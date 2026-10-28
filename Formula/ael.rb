@@ -3,12 +3,13 @@ class Ael < Formula
 
   desc "Local-first AI engineering usage, cost, and provenance ledger"
   homepage "https://github.com/LangeVC/ai-engineering-ledger"
-  url "https://github.com/LangeVC/ai-engineering-ledger/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "b802dbdd382440bc529ede3e33660464b3b755de22163fc05d799c9d6bff727d"
+  url "https://github.com/LangeVC/ai-engineering-ledger/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "fc853cdd40c58bdd1fa316e493b7fb25539a324004949e537357fd76e3d2a71a"
   license "Apache-2.0"
   head "https://github.com/LangeVC/ai-engineering-ledger.git", branch: "main"
 
   depends_on "python@3.12"
+  depends_on "tesseract" => :recommended
 
   def install
     virtualenv_install_with_resources
@@ -24,6 +25,8 @@ class Ael < Formula
   def caveats
     <<~EOS
       AEL data is stored in #{var}/lib/ael and is preserved by upgrade and uninstall.
+      Local screenshot OCR uses Tesseract when installed; every extracted value still requires review.
+      Install without OCR using `brew install --without-tesseract ael`.
       Review and remove that directory manually only when you intentionally want to delete all ledger data.
     EOS
   end

@@ -8,7 +8,14 @@ Public Homebrew Formulae maintained by LangeVC.
 brew tap langevc/tap
 brew install ael
 ael doctor
+ael ui
 ```
+
+`ael ui` opens the local browser interface for source setup, reviewed imports,
+dashboard snapshots and reports. Tesseract is a recommended dependency for
+local PNG screenshot OCR; every extracted value still requires explicit review
+before it enters the ledger. Install the manual-review workflow without OCR via
+`brew install --without-tesseract ael`.
 
 Upgrade with:
 
