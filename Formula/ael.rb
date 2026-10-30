@@ -3,8 +3,8 @@ class Ael < Formula
 
   desc "Local-first AI engineering usage, cost, and provenance ledger"
   homepage "https://github.com/LangeVC/ai-engineering-ledger"
-  url "https://github.com/LangeVC/ai-engineering-ledger/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "fc853cdd40c58bdd1fa316e493b7fb25539a324004949e537357fd76e3d2a71a"
+  url "https://github.com/LangeVC/ai-engineering-ledger/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "c918913980fe9a1af4fed698c781550e07ebbfb6854dddfb6ad975e24b3d0180"
   license "Apache-2.0"
   head "https://github.com/LangeVC/ai-engineering-ledger.git", branch: "main"
 
@@ -33,10 +33,19 @@ class Ael < Formula
 
   test do
     home = testpath/"ael-home"
+    assert_match "ael 0.3.0", shell_output("#{bin}/ael --version")
     system bin/"ael", "setup", "--home", home
     system bin/"ael", "doctor", home
     assert_path_exists home/"ledger.db"
     assert_equal 0700, File.stat(home/"inbox").mode & 0777
     assert_equal 0600, File.stat(home/"ledger.db").mode & 0777
+
+    study = testpath/"study-export"
+    system bin/"ael", "export", "--output", study,
+           "--from", "2026-04-26", "--to", "2026-11-01",
+           "--timezone", "Europe/Berlin",
+           "--study-cutoff", "2026-11-01T00:00:00Z"
+    assert_path_exists study/"analysis.json"
+    assert_path_exists study/"analysis-manifest.json"
   end
 end
