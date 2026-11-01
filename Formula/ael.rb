@@ -3,8 +3,8 @@ class Ael < Formula
 
   desc "Local-first AI engineering usage, cost, and provenance ledger"
   homepage "https://github.com/LangeVC/ai-engineering-ledger"
-  url "https://github.com/LangeVC/ai-engineering-ledger/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "b246adb2b48cbf97b7103a34e106929a775cbdc67678ca1bfcbdef9681f5eb0d"
+  url "https://github.com/LangeVC/ai-engineering-ledger/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "77536805b1309d7c95db3461dc23db545e15317971d9b2767ee1f33e720f4b4a"
   license "Apache-2.0"
   head "https://github.com/LangeVC/ai-engineering-ledger.git", branch: "main"
 
@@ -33,7 +33,7 @@ class Ael < Formula
 
   test do
     home = testpath/"ael-home"
-    assert_match "ael 0.5.0", shell_output("#{bin}/ael --version")
+    assert_match "ael 0.6.0", shell_output("#{bin}/ael --version")
     system bin/"ael", "setup", "--home", home
     system bin/"ael", "doctor", home
     assert_path_exists home/"ledger.db"
